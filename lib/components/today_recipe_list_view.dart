@@ -9,15 +9,27 @@ class TodayRecipeListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    listViewItemBuilder(BuildContext context, int index) {
-      final recipe = recipes[index];
-      return buildCard(recipe);
-    }
-
-    listViewSeparatorBuilder(BuildContext context, int index) {
+    Widget listViewSeparatorBuilder(BuildContext context, int index) {
       return const SizedBox(
         width: 16,
       );
+    }
+
+    Widget buildCard(ExploreRecipe recipe) {
+      if (recipe.cardType == RecipeCardType.card1) {
+        return Card1(recipe: recipe);
+      } else if (recipe.cardType == RecipeCardType.card2) {
+        return Card2(recipe: recipe);
+      } else if (recipe.cardType == RecipeCardType.card3) {
+        return Card3(recipe: recipe);
+      } else {
+        throw Exception('This card doesn\'t exist yet');
+      }
+    }
+
+    Widget listViewItemBuilder(BuildContext context, int index) {
+      final recipe = recipes[index];
+      return buildCard(recipe);
     }
 
     return Padding(
@@ -49,17 +61,5 @@ class TodayRecipeListView extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget buildCard(ExploreRecipe recipe) {
-    if (recipe.cardType == RecipeCardType.card1) {
-      return Card1(recipe: recipe);
-    } else if (recipe.cardType == RecipeCardType.card2) {
-      return Card2(recipe: recipe);
-    } else if (recipe.cardType == RecipeCardType.card3) {
-      return Card3(recipe: recipe);
-    } else {
-      throw Exception('This card doesn\'t exist yet');
-    }
   }
 }
