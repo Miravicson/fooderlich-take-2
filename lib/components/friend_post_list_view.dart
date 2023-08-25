@@ -21,12 +21,13 @@ class FriendPostListView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Social Chefs ! ',
+          Text('Social Chefs 👨‍🍳 ',
               style: Theme.of(context).textTheme.displayLarge),
           const SizedBox(height: 16),
           ListView.separated(
             primary: false,
-            physics: const NeverScrollableScrollPhysics(),
+            // physics: const NeverScrollableScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             itemCount: friendPosts.length,
